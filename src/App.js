@@ -1,23 +1,41 @@
-import logo from './logo.svg';
 import './App.css';
+import logothewitcher from './imagenes/logothewitcher.jpg';
+import Boton from './componentes/Boton';
+import Contador from './componentes/Contador';
+import { useState } from 'react';
 
-function App() {
+function App() { 
+
+  const [numClicks, setNumClicks] = useState(0);
+
+  const manejarClick = () =>{
+    setNumClicks(numClicks + 1);
+  };
+
+  const reiniciarContador = () => {
+    setNumClicks(0);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='logo-contenedor'>
+      <img className='witcher-logo' src={logothewitcher} alt="logo de the witcher"/>
+    </div>
+    <div className='contenedor-contador'>
+      <Contador 
+      numClicks={numClicks}
+      />
+      <Boton 
+        texto='Click'
+        esBotonDeClick={true}
+        manejarClick={manejarClick}
+      />
+      <Boton
+      texto='Reiniciar'
+      esBotonDeClick={false}
+      manejarClick={reiniciarContador}
+      />
+    </div>
     </div>
   );
 }
